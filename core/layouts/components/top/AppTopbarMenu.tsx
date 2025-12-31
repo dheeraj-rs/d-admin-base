@@ -1,28 +1,23 @@
-import React, { forwardRef, useImperativeHandle, useRef } from 'react';
+'use client';
+import React, { useRef } from 'react';
 import Link from 'next/link';
 import { PanelLeft, PanelTop, PanelBottom, PanelRight } from 'lucide-react';
 import { classMixin } from '@/core/utils/class-mixin';
 import { useLanguage } from '@/core/providers/LanguageProvider';
-import { AppTopbarMenuProps, AppTopbarMenuRef } from '@/core/types/admin-layout';
+import { useLayoutStore } from '@/core/store';
 
-const AppTopbarMenu = forwardRef<AppTopbarMenuRef, AppTopbarMenuProps>((props, ref) => {
-    const {
-        layoutState,
-        layoutConfig,
-        onMenuToggle,
-        onConfigToggle,
-        onBottombarToggle,
-        onTopbarToggle,
-    } = props;
+const AppTopbarMenu = () => {
+    const layoutConfig = useLayoutStore((state) => state.layoutConfig);
+    const layoutState = useLayoutStore((state) => state.layoutState);
+    const onMenuToggle = useLayoutStore((state) => state.onMenuToggle);
+    const onConfigToggle = useLayoutStore((state) => state.onConfigToggle);
+    const onBottombarToggle = useLayoutStore((state) => state.onBottombarToggle);
+    const onTopbarToggle = useLayoutStore((state) => state.onTopbarToggle);
 
     const { t } = useLanguage();
     const menubuttonRef = useRef<HTMLButtonElement>(null);
     const containerRef = useRef<HTMLDivElement>(null);
 
-    useImperativeHandle(ref, () => ({
-        menubutton: menubuttonRef.current,
-        container: containerRef.current
-    }));
 
     return (
         <div
@@ -65,18 +60,8 @@ const AppTopbarMenu = forwardRef<AppTopbarMenuRef, AppTopbarMenuProps>((props, r
                     <span>{t('nav.webconfig')}</span>
                 </button>
             </div>
-            <div className="topbar-actions">
-                <Link href="/settings">
-                    <button type="button" className="p-link layout-topbar-button" title={t('nav.settings')}>
-                        <i className="pi pi-cog"></i>
-                        <span>{t('nav.settings')}</span>
-                    </button>
-                </Link>
-            </div>
         </div>
     );
-});
-
-AppTopbarMenu.displayName = 'AppTopbarMenu';
+};
 
 export default AppTopbarMenu;

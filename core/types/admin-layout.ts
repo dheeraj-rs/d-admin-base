@@ -173,17 +173,6 @@ export interface UseLayoutClassesProps {
   layoutState: LayoutState;
 }
 
-export interface AppTopbarMenuProps {
-  layoutState: LayoutState;
-  layoutConfig: LayoutConfig;
-  onMenuToggle: () => void;
-  onConfigToggle: () => void;
-  onBottombarToggle: () => void;
-  onTopbarToggle: () => void;
-  isMounted: boolean;
-}
+export type AppTopbarMenuProps = object;
 
-export type AppTopbarMenuRef = {
-  menubutton: HTMLButtonElement | null;
-  container: HTMLDivElement | null;
-};
+export type AppTopbarMenuRef = null;

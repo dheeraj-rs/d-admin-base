@@ -1,39 +1,20 @@
 
-import React, { forwardRef, useEffect, useImperativeHandle, useRef, useState } from 'react';
+import React, { forwardRef, useRef } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useLayoutStore } from '@/core/store';
-import { AppTopbarRef, AppTopbarMenuRef } from '@/core/types/admin-layout';
+import { AppTopbarRef } from '@/core/types/admin-layout';
 import AppTopbarNotifications from './AppTopbarNotifications';
 import AppTopbarMenu from './AppTopbarMenu';
 
-const TopbarContent = forwardRef<AppTopbarRef>((props, ref) => {
+const TopbarContent = forwardRef<AppTopbarRef>(() => {
     const layoutConfig = useLayoutStore((state) => state.layoutConfig);
-    const layoutState = useLayoutStore((state) => state.layoutState);
     const onMenuToggle = useLayoutStore((state) => state.onMenuToggle);
     const onConfigToggle = useLayoutStore((state) => state.onConfigToggle);
-    const onBottombarToggle = useLayoutStore((state) => state.onBottombarToggle);
-    const onTopbarToggle = useLayoutStore((state) => state.onTopbarToggle);
-
     const topbarRef = useRef<HTMLDivElement>(null);
     const configMenuButtonRef = useRef<HTMLButtonElement>(null);
     const sidebarMenuButtonRef = useRef<HTMLButtonElement>(null);
-    const menuRef = useRef<AppTopbarMenuRef>(null);
 
-    const [isMounted, setIsMounted] = useState(false);
-
-    useEffect(() => {
-        const timer = setTimeout(() => setIsMounted(true), 0);
-        return () => clearTimeout(timer);
-    }, []);
-
-    useImperativeHandle(ref, () => ({
-        topbarElement: topbarRef.current,
-        menubutton: menuRef.current?.menubutton || null,
-        topbarmenu: menuRef.current?.container || null,
-        topbarmenubutton: configMenuButtonRef.current,
-        toolbarbutton: sidebarMenuButtonRef.current,
-    }));
 
     return (
         <section ref={topbarRef} className="layout-topbar">
@@ -60,16 +41,14 @@ const TopbarContent = forwardRef<AppTopbarRef>((props, ref) => {
             </div>
 
             <div className="topbar-end">
-                <AppTopbarMenu
-                    ref={menuRef}
-                    layoutState={layoutState}
-                    layoutConfig={layoutConfig}
-                    onMenuToggle={onMenuToggle}
-                    onConfigToggle={onConfigToggle}
-                    onBottombarToggle={onBottombarToggle}
-                    onTopbarToggle={onTopbarToggle}
-                    isMounted={isMounted}
-                />
+                <AppTopbarMenu />
+            </div>
+            <div className="topbar-actions">
+                <Link href="/settings">
+                    <button type="button" className="p-link layout-topbar-button">
+                        <i className="pi pi-cog"></i>
+                    </button>
+                </Link>
             </div>
             <button ref={configMenuButtonRef} type="button" className="p-link layout-topbar-button layout-topbar-menu-button" onClick={(e) => { e.stopPropagation(); onConfigToggle(); }}>
                 <i className="pi pi-palette" />

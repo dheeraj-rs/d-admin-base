@@ -50,21 +50,14 @@ export const useMenuManagement = ({
     useEventListener({
       type: 'click',
       listener: (event) => {
+        const target = event.target as HTMLElement;
         const isOutsideClicked = !(
-          menubarRef.current?.isSameNode(event.target as Node) ||
-          menubarRef.current?.contains(event.target as Node) ||
-          configbarRef.current?.isSameNode(event.target as Node) ||
-          configbarRef.current?.contains(event.target as Node) ||
-          topbarRef.current?.menubutton?.isSameNode(event.target as Node) ||
-          topbarRef.current?.menubutton?.contains(event.target as Node) ||
-          topbarRef.current?.topbarmenu?.isSameNode(event.target as Node) ||
-          topbarRef.current?.topbarmenu?.contains(event.target as Node) ||
-          topbarRef.current?.topbarmenubutton?.isSameNode(
-            event.target as Node
-          ) ||
-          topbarRef.current?.topbarmenubutton?.contains(event.target as Node) ||
-          topbarRef.current?.toolbarbutton?.isSameNode(event.target as Node) ||
-          topbarRef.current?.toolbarbutton?.contains(event.target as Node)
+          menubarRef.current?.isSameNode(target) ||
+          menubarRef.current?.contains(target) ||
+          configbarRef.current?.isSameNode(target) ||
+          configbarRef.current?.contains(target) ||
+          target.closest('.layout-topbar-menu') ||
+          target.closest('.layout-topbar-menu-button')
         );
 
         if (isOutsideClicked) {
@@ -79,13 +72,10 @@ export const useMenuManagement = ({
   ] = useEventListener({
     type: 'click',
     listener: (event) => {
+      const target = event.target as HTMLElement;
       const isOutsideClicked = !(
-        topbarRef.current?.topbarmenu?.isSameNode(event.target as Node) ||
-        topbarRef.current?.topbarmenu?.contains(event.target as Node) ||
-        topbarRef.current?.topbarmenubutton?.isSameNode(event.target as Node) ||
-        topbarRef.current?.topbarmenubutton?.contains(event.target as Node) ||
-        topbarRef.current?.toolbarbutton?.isSameNode(event.target as Node) ||
-        topbarRef.current?.toolbarbutton?.contains(event.target as Node)
+        target.closest('.layout-topbar-menu') ||
+        target.closest('.layout-topbar-menu-button')
       );
 
       if (isOutsideClicked) {
