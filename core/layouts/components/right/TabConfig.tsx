@@ -1,5 +1,4 @@
 import { LayoutConfig, LayoutState } from '@/core/types/admin-layout';
-import Link from 'next/link';
 import { PanelLeft, PanelTop, PanelBottom, PanelRight, Maximize, Minimize } from 'lucide-react';
 
 interface TabConfigProps {
