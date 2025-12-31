@@ -1,0 +1,34 @@
+// Builder Canvas Styles
+.builder-canvas {
+  width: 100%;
+  height: 100%;
+  background: var(--surface-ground);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 500px;
+}
+
+.canvas-placeholder {
+  text-align: center;
+  color: var(--text-color-secondary);
+
+  i {
+    font-size: 4rem;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    display: block;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--text-color);
+    margin-bottom: 0.5rem;
+  }
+
+  p {
+    font-size: 1rem;
+    color: var(--text-color-secondary);
+  }
+}

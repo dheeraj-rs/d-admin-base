@@ -1,21 +1,35 @@
 'use client';
-import { AppTopbarRef, ChildContainerProps } from '@/core/types/admin-layout';
-import { useRef } from 'react';
+
+import React from 'react';
+import { useLayoutStore } from '@/core/store';
+import { useMenuManagement } from '@/core/hooks/useMenuManagement';
+import { useLayoutClasses } from '@/core/hooks/useLayoutClasses';
+import { useCurrentLayout, useLayoutSlot } from './context/LayoutContext';
+import { LayoutProps } from '@/core/types/layout-types';
 import TopBar from './default-bar/TopBar';
 import LeftBar from './default-bar/LeftBar';
 import RightBar from './default-bar/RightBar';
 import BottomBar from './default-bar/BottomBar';
-import { useLayoutStore } from '../store';
-import { useMenuManagement } from '../hooks/useMenuManagement';
-import { useLayoutClasses } from '../hooks/useLayoutClasses';
 import ContentArea from './default-bar/ContentArea';
 import LayoutMask from './default-bar/LayoutMask';
-import TopbarContent from './components/top/TopbarContent';
-import LeftbarContent from './components/left/LeftbarContent';
-import RightbarContent from './components/right/RightbarContent';
-import BottombarContent from './components/bottom/BottombarContent';
+import { LayoutSlot } from './components/LayoutSlot';
+import { useRef } from 'react';
+import { AppTopbarRef } from '@/core/types/admin-layout';
 
-const Layout = ({ children }: ChildContainerProps) => {
+/**
+ * Smart Layout Component
+ * Uses slot-based architecture to render components from layout configuration
+ * 
+ * @example
+ * ```tsx
+ * <LayoutProvider initialLayout="default">
+ *   <Layout>
+ *     <YourContent />
+ *   </Layout>
+ * </LayoutProvider>
+ * ```
+ */
+const Layout: React.FC<LayoutProps> = ({ children, className }) => {
     const layoutConfig = useLayoutStore((state) => state.layoutConfig);
     const layoutState = useLayoutStore((state) => state.layoutState);
     const setLayoutState = useLayoutStore((state) => state.setLayoutState);
@@ -34,28 +48,34 @@ const Layout = ({ children }: ChildContainerProps) => {
     });
 
     const containerClass = useLayoutClasses({ layoutConfig, layoutState });
+    const currentLayout = useCurrentLayout();
+
+    // Get components for each slot
+    const topbarComponents = useLayoutSlot('topbar');
+    const leftbarComponents = useLayoutSlot('leftbar');
+    const rightbarComponents = useLayoutSlot('rightbar');
+    const bottombarComponents = useLayoutSlot('bottombar');
 
     return (
-        <div className={containerClass}>
+        <div className={`${containerClass} ${className || ''}`}>
             <TopBar>
-                <TopbarContent ref={topbarRef} />
+                <LayoutSlot slot="topbar" components={topbarComponents} />
             </TopBar>
 
             <LeftBar ref={menubarRef}>
-                <LeftbarContent menubarRef={menubarRef} />
+                <LayoutSlot slot="leftbar" components={leftbarComponents} />
             </LeftBar>
 
             <RightBar ref={configbarRef}>
-                <RightbarContent />
+                <LayoutSlot slot="rightbar" components={rightbarComponents} />
             </RightBar>
 
-            <ContentArea>
-                {children}
-            </ContentArea>
+            <ContentArea>{children}</ContentArea>
 
             <BottomBar ref={bottombarRef}>
-                <BottombarContent />
+                <LayoutSlot slot="bottombar" components={bottombarComponents} />
             </BottomBar>
+
             <LayoutMask />
         </div>
     );
