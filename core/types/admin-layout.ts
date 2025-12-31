@@ -104,10 +104,6 @@ export interface Message {
   icon?: string;
 }
 
-export interface AppTopbarNotificationsProps {
-  user: User | null;
-}
-
 export interface ThemeButtonProps {
   theme: string;
   colorScheme: 'light' | 'dark';
@@ -178,7 +174,6 @@ export interface AppTopbarMenuProps {
   onBottombarToggle: () => void;
   onTopbarToggle: () => void;
   isMounted: boolean;
-  user: User | null;
 }
 
 export type AppTopbarMenuRef = {

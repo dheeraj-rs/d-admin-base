@@ -2,7 +2,7 @@ import React, { useState, useRef, useMemo, useEffect } from 'react';
 import Link from 'next/link';
 import { MENU_ITEMS } from '@/core/layouts/constants/menu-data';
 import { useTranslatedMenuItems } from '@/core/hooks/useTranslatedMenuItems';
-import { canAccessPageByRole, getUserRole } from '@/core/utils/auth';
+import { getUserRole } from '@/core/utils/auth';
 
 const BottombarContent = () => {
     const [activeIndex, setActiveIndex] = useState(2);

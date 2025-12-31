@@ -3,7 +3,7 @@ import { useRouter } from 'next/navigation';
 import { MENU_ITEMS as menuItems } from '../../constants/menu-data';
 import { useEventListener } from '../../../hooks/useEventListener';
 import { useLayoutStore, LayoutState } from '../../../store';
-import { AppMenuItem, AppSearchProps, SearchableItem, SearchConfig } from '@/core/types/admin-layout';
+import { AppSearchProps, SearchableItem, SearchConfig } from '@/core/types/admin-layout';
 
 const DEFAULT_SEARCH_CONFIG: SearchConfig = {
     maxResults: 10,

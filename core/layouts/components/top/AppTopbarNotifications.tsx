@@ -4,11 +4,10 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { authFetch } from '@/core/utils';
 import { useLanguage } from '@/core/providers/LanguageProvider';
-import { Language } from '@/core/types/i18n';
 import { safeJsonParse } from '@/core/utils';
-import { Message, AppTopbarNotificationsProps } from '@/core/types/admin-layout';
+import { Message } from '@/core/types/admin-layout';
 
-const AppTopbarNotifications: React.FC<AppTopbarNotificationsProps> = () => {
+const AppTopbarNotifications: React.FC = () => {
     const { t } = useLanguage();
     const router = useRouter();
     const [showMessageDropdown, setShowMessageDropdown] = useState(false);

@@ -3,8 +3,6 @@ import { MENU_ITEMS as menuItems } from '../../constants/menu-data';
 import AppMenuitem from './AppMenuitem';
 import AppMenuSearch from './AppMenuSearch';
 import { useLayoutStore } from '../../../store';
-// import { useMenuItems } from '../../hooks/useMenuItems';
-// import { useTranslatedMenuItems } from '../../hooks/useTranslatedMenuItems';
 import { AppMenuItem } from '@/core/types/admin-layout';
 
 // Mock hooks to preserve logic structure

@@ -1,6 +1,5 @@
 import { useLanguage } from '@/core/providers/LanguageProvider';
 import { AppMenuItem } from '@/core/types/admin-layout';
-import { Translations } from '@/core/types/i18n';
 
 const translateMenuItem = (
   item: AppMenuItem,
