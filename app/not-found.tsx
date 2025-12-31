@@ -1,7 +1,6 @@
 import type { FC } from 'react';
 import { memo } from 'react';
 import FloatingCubes from '@/core/components/not-found/FloatingCubes';
-import GridBackground from '@/core/components/not-found/GalaxyBackground';
 import FloatingTechElements from '@/core/components/not-found/FloatingTechElements';
 import TextGlitchEffects from '@/core/components/not-found/TextGlitchEffects';
 import GlowButton from '@/core/components/not-found/GlowButton';
@@ -85,7 +84,6 @@ const NotFoundPage: FC = () => {
                 </div>
             </div>
             <FloatingCubes />
-            <GridBackground />
             <FloatingTechElements />
         </div>
     );
