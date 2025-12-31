@@ -2,7 +2,7 @@
 import React, { useCallback, useEffect, Suspense } from 'react';
 import { usePathname, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
-import { classNames } from '../../../../core/utils/classNames';
+import { classMixin } from '../../../utils/class-mixin';
 import { CSSTransition } from '../../../../core/utils/css-transition';
 import { useMenuStore } from '../../../store';
 import { AppMenuItemProps, AppMenuItem } from '@/core/types/admin-layout';
@@ -60,7 +60,7 @@ const AppMenuitemInner = (props: AppMenuItemProps) => {
 
     return (
         <li
-            className={classNames({
+            className={classMixin({
                 'layout-root-menuitem': !!props.root,
                 'active-menuitem': active,
             })}
@@ -72,8 +72,8 @@ const AppMenuitemInner = (props: AppMenuItemProps) => {
                 </>
             )}
             {(!item!.to || item!.items) && item!.visible !== false ? (
-                <a href={item!.url} onClick={(e) => itemClick(e)} className={classNames(item!.class, 'p-ripple')} target={item!.target} tabIndex={0}>
-                    <i className={classNames('layout-menuitem-icon', item!.icon)}></i>
+                <a href={item!.url} onClick={(e) => itemClick(e)} className={classMixin(item!.class, 'p-ripple')} target={item!.target} tabIndex={0}>
+                    <i className={classMixin('layout-menuitem-icon', item!.icon)}></i>
                     <span className="layout-menuitem-text">{item!.label}</span>
                     {item!.items && <i className="pi pi-fw pi-angle-down layout-submenu-toggler"></i>}
                 </a>
@@ -84,10 +84,10 @@ const AppMenuitemInner = (props: AppMenuItemProps) => {
                     replace={item!.replaceUrl}
                     target={item!.target}
                     onClick={(e) => itemClick(e)}
-                    className={classNames(item!.class, 'p-ripple', { 'active-route': !!isActiveRoute })}
+                    className={classMixin(item!.class, 'p-ripple', { 'active-route': !!isActiveRoute })}
                     tabIndex={0}
                 >
-                    <i className={classNames('layout-menuitem-icon', item!.icon)}></i>
+                    <i className={classMixin('layout-menuitem-icon', item!.icon)}></i>
                     <span className="layout-menuitem-text">{item!.label}</span>
                     {item!.items && <i className="pi pi-fw pi-angle-down layout-submenu-toggler"></i>}
                 </Link>

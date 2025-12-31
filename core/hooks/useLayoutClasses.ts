@@ -4,7 +4,7 @@ import {
   PRIMEREACT_CLASSES,
   CSS_CLASSES,
 } from '../layouts/constants/layout-constants';
-import { classNames } from '../utils/classNames';
+import { classMixin } from '../utils/class-mixin';
 import { UseLayoutClassesProps } from '@/core/types/admin-layout';
 
 export const useLayoutClasses = ({
@@ -13,7 +13,7 @@ export const useLayoutClasses = ({
 }: UseLayoutClassesProps): string => {
   return useMemo(
     () =>
-      classNames(CSS_CLASSES.LAYOUT_WRAPPER, {
+      classMixin(CSS_CLASSES.LAYOUT_WRAPPER, {
         [LAYOUT_MODE_CLASSES.OVERLAY]: layoutConfig.menuMode === 'overlay',
         [LAYOUT_MODE_CLASSES.STATIC]: layoutConfig.menuMode === 'static',
         [LAYOUT_MODE_CLASSES.STATIC_SIDEBAR_INACTIVE]:

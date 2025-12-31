@@ -1,18 +1,17 @@
-import React, { useState, useRef, useMemo, useEffect } from 'react';
+import React, { useState, useRef, useMemo } from 'react';
 import Link from 'next/link';
 import { MENU_ITEMS } from '@/core/layouts/constants/menu-data';
 import { useTranslatedMenuItems } from '@/core/hooks/useTranslatedMenuItems';
-import { getUserRole } from '@/core/utils/auth';
+import { AppMenuItem } from '@/core/types/admin-layout';
 
 const BottombarContent = () => {
     const [activeIndex, setActiveIndex] = useState(2);
     const scrollContainerRef = useRef(null);
-    const [isMounted, setIsMounted] = useState(false);
 
     // Flatten MENU_ITEMS to get all actionable links
     const flatMenuItems = useMemo(() => {
-        const flatten = (items: any[]) => {
-            let flat: any[] = [];
+        const flatten = (items: AppMenuItem[]): AppMenuItem[] => {
+            let flat: AppMenuItem[] = [];
             items.forEach(item => {
                 if (item.to) {
                     flat.push(item);
@@ -28,33 +27,6 @@ const BottombarContent = () => {
     }, []);
 
     const translatedMobileMenuItems = useTranslatedMenuItems(flatMenuItems);
-
-    useEffect(() => {
-        const timer = setTimeout(() => {
-            setIsMounted(true);
-        }, 0);
-        return () => clearTimeout(timer);
-    }, []);
-
-    const filteredMobileMenuItems = useMemo(() => {
-        if (!isMounted) {
-            return translatedMobileMenuItems;
-        }
-        const userRole = getUserRole();
-        return translatedMobileMenuItems.filter(item => {
-            // 1. Role-based check (Explicit)
-            if (item.roles && item.roles.length > 0) {
-                if (!item.roles.includes(userRole as any)) {
-                    return false;
-                }
-            }
-
-            // 2. Permission-based check (Implicit via path)
-            // if (!item.to) return true;
-            // return canAccessPageByRole(item.to, userRole);
-            return true; // Bypass permission check to ensure items render
-        });
-    }, [translatedMobileMenuItems, isMounted]);
 
     const vibrate = () => {
         if (typeof navigator !== 'undefined' && 'vibrate' in navigator) {
@@ -72,7 +44,7 @@ const BottombarContent = () => {
             <div className="layout-bottombar-desktop" />
             <div className="layout-bottombar-mobile">
                 <div ref={scrollContainerRef} className="navigation-scroll-container">
-                    {filteredMobileMenuItems.map((item, index) => {
+                    {translatedMobileMenuItems.map((item, index) => {
                         const iconClass = typeof item.icon === 'string' ? item.icon : 'pi pi-circle';
 
                         return (

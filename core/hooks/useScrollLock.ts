@@ -1,11 +1,10 @@
-import { useRef, useState, useEffect, useCallback } from 'react';
+import { useRef, useEffect, useCallback } from 'react';
 
 export function useScrollLock(
   autoLock: boolean = false,
   lockTarget: HTMLElement | string | null = null,
   widthReflow = true
 ) {
-  const [isLocked, setIsLocked] = useState(false);
   const target = useRef<HTMLElement | null>(null);
   const originalStyle = useRef<{
     overflow: string;
@@ -25,7 +24,6 @@ export function useScrollLock(
       }
 
       target.current.style.overflow = 'hidden';
-      setIsLocked(true);
     }
   }, [widthReflow]);
 
@@ -34,7 +32,6 @@ export function useScrollLock(
       target.current.style.overflow = originalStyle.current.overflow;
       target.current.style.paddingRight = originalStyle.current.paddingRight;
       originalStyle.current = null;
-      setIsLocked(false);
     }
   }, []);
 
@@ -62,5 +59,5 @@ export function useScrollLock(
     };
   }, [disableScrollLock]);
 
-  return { isLocked, enableScrollLock, disableScrollLock };
+  return { isLocked: autoLock, enableScrollLock, disableScrollLock };
 }

@@ -1,6 +1,6 @@
 'use client';
 
-import { classNames } from '@/core/utils/classNames';
+import { classMixin } from '@/core/utils/class-mixin';
 import { useTheme } from '@/core/providers/ThemeProvider';
 import { ThemeButtonProps } from '@/core/types/admin-layout';
 
@@ -17,7 +17,7 @@ export const ThemeButton = ({
         <div
             key={`${name}-${colorScheme}`}
             onClick={() => changeTheme(theme, colorScheme)}
-            className={classNames('theme-selector__grid-item', {
+            className={classMixin('theme-selector__grid-item', {
                 selected: layoutConfig.theme === theme,
             })}
             style={{

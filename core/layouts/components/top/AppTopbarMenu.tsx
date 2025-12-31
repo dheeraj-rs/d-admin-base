@@ -1,7 +1,7 @@
 import React, { forwardRef, useImperativeHandle, useRef } from 'react';
 import Link from 'next/link';
 import { PanelLeft, PanelTop, PanelBottom, PanelRight } from 'lucide-react';
-import { classNames } from '@/core/utils';
+import { classMixin } from '@/core/utils/class-mixin';
 import { useLanguage } from '@/core/providers/LanguageProvider';
 import { AppTopbarMenuProps, AppTopbarMenuRef } from '@/core/types/admin-layout';
 
@@ -27,7 +27,7 @@ const AppTopbarMenu = forwardRef<AppTopbarMenuRef, AppTopbarMenuProps>((props, r
     return (
         <div
             ref={containerRef}
-            className={classNames('layout-topbar-menu', {
+            className={classMixin('layout-topbar-menu', {
                 'layout-topbar-menu-mobile-active': layoutState.profileSidebarVisible,
             })}
         >

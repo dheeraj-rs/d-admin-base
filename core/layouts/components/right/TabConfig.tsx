@@ -66,11 +66,6 @@ const TabConfig = ({
                     <span>{isFullscreen ? t('config.appModeActive') : t('config.appMode')}</span>
                 </button>
             </div>
-            <div className="config-tab-toggle">
-                <button type="button" className="p-link toggle-button">
-                    <Link href="/settings">{t('config.moreSettings')}</Link>
-                </button>
-            </div>
         </>
     );
 };

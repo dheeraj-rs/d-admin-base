@@ -5,9 +5,8 @@ import AppMenuSearch from './AppMenuSearch';
 import { useLayoutStore } from '../../../store';
 import { AppMenuItem } from '@/core/types/admin-layout';
 
-// Mock hooks to preserve logic structure
 const useMenuItems = () => [];
-const useTranslatedMenuItems = (items: any[]) => items;
+const useTranslatedMenuItems = (items: AppMenuItem[]) => items;
 
 const AppMenubar = ({ menubarRef }: { menubarRef: React.RefObject<HTMLDivElement | null> }) => {
     const searchRef = useRef<HTMLDivElement>(null);

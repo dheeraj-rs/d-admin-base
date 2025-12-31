@@ -8,7 +8,7 @@ import { useLanguage } from '@/core/providers/LanguageProvider';
 import ScaleControl from './ScaleControl';
 import MenuTypeSelector from './MenuTypeSelector';
 import TabConfig from './TabConfig';
-import { ThemeCategory } from '@/core/utils/theme/ThemeCategory';
+import { ThemeCategory } from '@/core/components/config-bar/ThemeCategory';
 
 const AppConfigbar = () => {
     const [isFullscreen, setIsFullscreen] = useState(false);

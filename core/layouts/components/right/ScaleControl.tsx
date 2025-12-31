@@ -1,5 +1,5 @@
 import Slider from './Slider';
-import { classNames } from '../../../../core/utils/classNames';
+import { classMixin } from '../../../utils/class-mixin';
 import { LayoutConfig, ScaleControlProps } from '@/core/types/admin-layout';
 
 const ScaleControl = ({ layoutConfig, setLayoutConfig, scales, t }: ScaleControlProps) => {
@@ -26,7 +26,7 @@ const ScaleControl = ({ layoutConfig, setLayoutConfig, scales, t }: ScaleControl
                     {scales.map((scale) => (
                         <div
                             key={scale}
-                            className={classNames('marker', {
+                            className={classMixin('marker', {
                                 active: scale === layoutConfig.scale,
                             })}
                             onClick={() => {

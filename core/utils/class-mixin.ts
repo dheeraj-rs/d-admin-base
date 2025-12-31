@@ -1,5 +1,3 @@
-import { useQuery } from '@tanstack/react-query';
-
 type ClassValue =
   | string
   | number
@@ -34,7 +32,7 @@ export function cn(...args: ClassValue[]) {
   return classes.filter(Boolean).join(' ');
 }
 
-export const classNames = (...classes: ClassValue[]): string => {
+export const classMixin = (...classes: ClassValue[]): string => {
   const result = new Set<string>();
   const addClass = (item: ClassValue): void => {
     if (!item) return;
@@ -62,37 +60,4 @@ export const classNames = (...classes: ClassValue[]): string => {
   };
   classes.forEach(addClass);
   return Array.from(result).filter(Boolean).join(' ');
-};
-
-export const dateFormat = (date: string | Date) => {
-  return new Date(date).toLocaleDateString('en-US', {
-    year: 'numeric',
-    month: 'short',
-    day: 'numeric',
-    hour: '2-digit',
-    minute: '2-digit',
-  });
-};
-
-export const fetchElements = async (
-  page: number,
-  limit: number,
-  filters: Record<string, unknown>
-) => {
-  void page;
-  void limit;
-  void filters;
-  return [];
-};
-
-export const useGetAllElements = (
-  page: number,
-  limit: number,
-  filters: Record<string, unknown>
-) => {
-  return useQuery({
-    queryKey: ['elements', page, limit, filters],
-    queryFn: () => fetchElements(page, limit, filters),
-    staleTime: 5 * 60 * 1000,
-  });
 };

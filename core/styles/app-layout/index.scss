@@ -1,5 +1,3 @@
-@use '../variables' as *;
-@use '../mixins' as *;
 @use './_layout-core';
 @use './_root';
 @use './_icons';
@@ -11,6 +9,4 @@
 @use './_layout-footer';
 @use './_layout-responsive';
 @use './_utils';
-@use './_page-not-found';
-@use './_dashboard';
 @use './_children-wrapper';

@@ -1,5 +1,5 @@
 import { useEffect, useState, useCallback, useRef } from 'react';
-import { classNames } from '../../../../core/utils/classNames';
+import { classMixin } from '../../../utils/class-mixin';
 import { MenuTypeSelectorProps } from '@/core/types/admin-layout';
 
 const MenuTypeSelector = ({
@@ -69,7 +69,7 @@ const MenuTypeSelector = ({
                     <div className="menu-mode-selector">
                         <button
                             type="button"
-                            className={classNames('mode-button', {
+                            className={classMixin('mode-button', {
                                 active: !layoutState.sidebarAutoOverlayActive,
                             })}
                             onClick={onSidebarAutoOverlayToggle}
@@ -79,7 +79,7 @@ const MenuTypeSelector = ({
                         </button>
                         <button
                             type="button"
-                            className={classNames('mode-button', {
+                            className={classMixin('mode-button', {
                                 active: layoutState.sidebarAutoOverlayActive,
                             })}
                             onClick={onSidebarAutoOverlayToggle}
