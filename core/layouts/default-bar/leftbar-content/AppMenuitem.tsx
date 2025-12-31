@@ -3,7 +3,7 @@ import React, { useCallback, useEffect, Suspense } from 'react';
 import { usePathname, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import { classMixin } from '../../../utils/class-mixin';
-import { CSSTransition } from '../../../../core/utils/css-transition';
+import { CSSTransition } from '../../../utils/css-transition';
 import { useMenuStore } from '../../../store';
 import { AppMenuItemProps, AppMenuItem } from '@/core/types/admin-layout';
 

@@ -10,10 +10,10 @@ import { useMenuManagement } from '../hooks/useMenuManagement';
 import { useLayoutClasses } from '../hooks/useLayoutClasses';
 import ContentArea from './default-bar/ContentArea';
 import LayoutMask from './default-bar/LayoutMask';
-import TopbarContent from './components/top/TopbarContent';
-import LeftbarContent from './components/left/LeftbarContent';
-import RightbarContent from './components/right/RightbarContent';
-import BottombarContent from './components/bottom/BottombarContent';
+import TopbarContent from './default-bar/topbar-content/TopbarContent';
+import LeftbarContent from './default-bar/leftbar-content/LeftbarContent';
+import RightbarContent from './default-bar/rightbar-content/RightbarContent';
+import BottombarContent from './default-bar/bottombar-content/BottombarContent';
 
 interface LayoutProps extends ChildContainerProps, LayoutContentProps { }
 

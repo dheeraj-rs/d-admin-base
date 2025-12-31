@@ -42,7 +42,7 @@ const NotFoundPage: FC = () => {
                 </div>
 
                 <div className="nfp-action-buttons">
-                    <GlowButton text="Return to Dashboard" href="/dashboard" />
+                    <GlowButton text="Return to Dashboard" href="/" />
                     <GlowButtonTransparent
                         text="Browse Websites"
                         href="#"

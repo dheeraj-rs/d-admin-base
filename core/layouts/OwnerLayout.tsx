@@ -4,18 +4,22 @@ import Sidebar from './owner-bar/Sidebar'
 import ContentAreaWrapper from './owner-bar/ContentAreaWrapper'
 import Topbar from './owner-bar/Topbar'
 import ContentArea from './owner-bar/ContentArea'
-import SideBarContent from './owner-bar/SideBarContent'
-import TopBarContent from './owner-bar/TopBarConntent'
 
-function OwnerLayout({ children }: { children: React.ReactNode }) {
+interface OwnerLayoutProps {
+    children: React.ReactNode;
+    sidebarContent?: React.ReactNode;
+    topbarContent?: React.ReactNode;
+}
+
+function OwnerLayout({ children, sidebarContent, topbarContent }: OwnerLayoutProps) {
     return (
         <LayoutWrapper>
             <Sidebar >
-                <SideBarContent />
+                {sidebarContent}
             </Sidebar>
             <ContentAreaWrapper>
                 <Topbar >
-                    <TopBarContent />
+                    {topbarContent}
                 </Topbar>
                 <ContentArea >
                     {children}

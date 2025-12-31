@@ -1,4 +1,4 @@
-import AppTopbarMenu from '@/core/layouts/components/top/AppTopbarMenu'
+import AppTopbarMenu from '@/core/layouts/default-bar/topbar-content/AppTopbarMenu'
 
 function WebsiteBuilderTopbar() {
     return (
