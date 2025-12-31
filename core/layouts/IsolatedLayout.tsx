@@ -1,6 +1,6 @@
 'use client';
-import { AppTopbarRef, ChildContainerProps, LayoutContentProps } from '@/core/types/admin-layout';
-import React, { useRef } from 'react';
+import { useRef } from 'react';
+import { ChildContainerProps, LayoutContentProps } from '@/core/types/admin-layout';
 import TopBar from './default-bar/TopBar';
 import LeftBar from './default-bar/LeftBar';
 import RightBar from './default-bar/RightBar';
@@ -28,7 +28,6 @@ const IsolatedLayout = ({
     const layoutState = useLayoutStore((state) => state.layoutState);
     const setLayoutState = useLayoutStore((state) => state.setLayoutState);
 
-    const topbarRef = useRef<AppTopbarRef>(null);
     const menubarRef = useRef<HTMLDivElement>(null);
     const configbarRef = useRef<HTMLDivElement>(null);
     const bottombarRef = useRef<HTMLDivElement>(null);
@@ -36,7 +35,6 @@ const IsolatedLayout = ({
     useMenuManagement({
         layoutState,
         setLayoutState,
-        topbarRef,
         menubarRef,
         configbarRef,
     });
@@ -46,7 +44,7 @@ const IsolatedLayout = ({
     return (
         <div className={containerClass}>
             <TopBar>
-                {topbarContent !== undefined ? React.cloneElement(topbarContent as any, { ref: topbarRef }) : <TopbarContent ref={topbarRef} />}
+                {topbarContent !== undefined ? topbarContent : <TopbarContent />}
             </TopBar>
 
             <LeftBar ref={menubarRef}>

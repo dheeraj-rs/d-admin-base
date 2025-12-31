@@ -4,14 +4,13 @@ import { useEventListener } from './useEventListener';
 import { useScrollLock } from './useScrollLock';
 
 import { LayoutState } from '@/core/types/layout-store';
-import { AppTopbarRef } from '@/core/types/admin-layout';
 
 interface UseMenuManagementProps {
   layoutState: LayoutState;
   setLayoutState: (
     state: Partial<LayoutState> | ((prev: LayoutState) => LayoutState)
   ) => void;
-  topbarRef: RefObject<AppTopbarRef | null>;
+
   menubarRef: RefObject<HTMLDivElement | null>;
   configbarRef: RefObject<HTMLDivElement | null>;
 }
@@ -19,7 +18,6 @@ interface UseMenuManagementProps {
 export const useMenuManagement = ({
   layoutState,
   setLayoutState,
-  topbarRef,
   menubarRef,
   configbarRef,
 }: UseMenuManagementProps) => {

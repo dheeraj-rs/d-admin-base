@@ -6,7 +6,7 @@ import RightbarContent from './components/right/RightbarContent';
 import BottombarContent from './components/bottom/BottombarContent';
 import { ChildContainerProps } from '@/core/types/admin-layout';
 
-const DefaultAdminLayout = ({ children }: ChildContainerProps) => {
+const DefaultLayout = ({ children }: ChildContainerProps) => {
     return (
         <Layout
             topbarContent={<TopbarContent ref={null} />}
@@ -19,4 +19,4 @@ const DefaultAdminLayout = ({ children }: ChildContainerProps) => {
     );
 };
 
-export default DefaultAdminLayout;
+export default DefaultLayout;
