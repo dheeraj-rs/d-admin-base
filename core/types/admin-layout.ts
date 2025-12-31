@@ -14,6 +14,13 @@ export interface ChildContainerProps {
   children: React.ReactNode;
 }
 
+export interface LayoutContentProps {
+  topbarContent?: React.ReactNode;
+  leftbarContent?: React.ReactNode;
+  rightbarContent?: React.ReactNode;
+  bottombarContent?: React.ReactNode;
+}
+
 export enum UserRole {
   OWNER = 'OWNER',
   ORG_ADMIN = 'ORG_ADMIN',

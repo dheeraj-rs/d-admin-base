@@ -20,9 +20,6 @@ const MenuTypeSelector = ({
         const checkMobile = () => {
             const mobile = window.innerWidth <= 991;
             setIsMobile(mobile);
-            if (mobile && layoutConfig.menuMode === 'static') {
-                changeMenuModeRef.current({ value: 'overlay' });
-            }
         };
         checkMobile();
         window.addEventListener('resize', checkMobile);

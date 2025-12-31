@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import type { FloatingCubesProps } from '../../../types/bg-effects';
+import type { FloatingCubesProps } from '../../types/bg-effects';
 
 const FloatingCubes: React.FC<FloatingCubesProps> = ({ className }) => {
     const cubes = useMemo(

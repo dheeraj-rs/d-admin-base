@@ -1,6 +1,6 @@
 'use client';
-import { AppTopbarRef, ChildContainerProps } from '@/core/types/admin-layout';
-import { useRef } from 'react';
+import { AppTopbarRef, ChildContainerProps, LayoutContentProps } from '@/core/types/admin-layout';
+import React, { useRef } from 'react';
 import TopBar from './default-bar/TopBar';
 import LeftBar from './default-bar/LeftBar';
 import RightBar from './default-bar/RightBar';
@@ -15,7 +15,15 @@ import LeftbarContent from './components/left/LeftbarContent';
 import RightbarContent from './components/right/RightbarContent';
 import BottombarContent from './components/bottom/BottombarContent';
 
-const Layout = ({ children }: ChildContainerProps) => {
+interface LayoutProps extends ChildContainerProps, LayoutContentProps { }
+
+const IsolatedLayout = ({
+    children,
+    topbarContent,
+    leftbarContent,
+    rightbarContent,
+    bottombarContent
+}: LayoutProps) => {
     const layoutConfig = useLayoutStore((state) => state.layoutConfig);
     const layoutState = useLayoutStore((state) => state.layoutState);
     const setLayoutState = useLayoutStore((state) => state.setLayoutState);
@@ -38,15 +46,15 @@ const Layout = ({ children }: ChildContainerProps) => {
     return (
         <div className={containerClass}>
             <TopBar>
-                <TopbarContent ref={topbarRef} />
+                {topbarContent !== undefined ? React.cloneElement(topbarContent as any, { ref: topbarRef }) : <TopbarContent ref={topbarRef} />}
             </TopBar>
 
             <LeftBar ref={menubarRef}>
-                <LeftbarContent menubarRef={menubarRef} />
+                {leftbarContent !== undefined ? leftbarContent : <LeftbarContent menubarRef={menubarRef} />}
             </LeftBar>
 
             <RightBar ref={configbarRef}>
-                <RightbarContent />
+                {rightbarContent !== undefined ? rightbarContent : <RightbarContent />}
             </RightBar>
 
             <ContentArea>
@@ -54,11 +62,11 @@ const Layout = ({ children }: ChildContainerProps) => {
             </ContentArea>
 
             <BottomBar ref={bottombarRef}>
-                <BottombarContent />
+                {bottombarContent !== undefined ? bottombarContent : <BottombarContent />}
             </BottomBar>
             <LayoutMask />
         </div>
     );
 };
 
-export default Layout;
+export default IsolatedLayout;
