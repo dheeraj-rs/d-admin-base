@@ -1,0 +1,86 @@
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal-container {
+  width: min(800px, 92vw);
+  background: var(--surface-overlay, #111111);
+  color: var(--text-color, #e5e7eb);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+  overflow: hidden;
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 18px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.modal-header h3 { font-weight: 600; margin: 0; }
+
+.modal-close {
+  background: transparent;
+  border: none;
+  color: inherit;
+  cursor: pointer;
+}
+
+.modal-body { padding: 16px 18px; }
+.modal-footer {
+  padding: 14px 18px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.form-group { margin-bottom: 14px; }
+.form-group label { display: block; margin-bottom: 6px; font-size: 0.9rem; opacity: 0.9; }
+
+.input, .textarea, .select {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.04);
+  color: inherit;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  padding: 10px 12px;
+  outline: none;
+}
+.input:focus, .textarea:focus, .select:focus { border-color: rgba(59,130,246,0.6); box-shadow: 0 0 0 3px rgba(59,130,246,0.2); }
+.input-error { border-color: #ef4444 !important; }
+.error-text { color: #f87171; font-size: 0.8rem; margin-top: 6px; }
+
+.textarea { resize: vertical; }
+
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+.tags-input { display: flex; gap: 8px; }
+.tags-list { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 8px; }
+.tag-pill { background: rgba(255,255,255,0.06); padding: 6px 10px; border-radius: 999px; display: inline-flex; align-items: center; gap: 6px; }
+.tag-remove { background: transparent; border: none; color: inherit; cursor: pointer; }
+
+.primary-action-btn, .secondary-btn {
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  cursor: pointer;
+}
+
+.primary-action-btn { background: #2563eb; color: #fff; }
+.primary-action-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+
+.secondary-btn { background: rgba(255,255,255,0.06); color: inherit; border-color: rgba(255,255,255,0.12); }
+
+@media (max-width: 640px) {
+  .form-row { grid-template-columns: 1fr; }
+}
