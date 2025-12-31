@@ -158,7 +158,7 @@ const GalaxyBackground = () => {
 
         brightness = Math.max(0.1, Math.min(1.0, brightness)); // Clamp brightness to a more visible range
 
-        const size = starClass === 'fg-star' 
+        const size = starClass === 'fg-star'
           ? Math.random() * 1.2 + 0.5  // Slightly larger foreground stars
           : Math.random() * 0.8 + 0.3; // Slightly larger background/mid stars
 
@@ -180,15 +180,15 @@ const GalaxyBackground = () => {
     };
 
     // Generate stars for each layer with balanced characteristics
-    const backgroundStars = starClusters.flatMap(cluster => 
+    const backgroundStars = starClusters.flatMap(cluster =>
       generateStarInCluster(cluster, 'bg-star')
     );
-    
-    const midStars = starClusters.flatMap(cluster => 
+
+    const midStars = starClusters.flatMap(cluster =>
       generateStarInCluster(cluster, 'mid-star')
     );
-    
-    const foregroundStars = starClusters.flatMap(cluster => 
+
+    const foregroundStars = starClusters.flatMap(cluster =>
       generateStarInCluster(cluster, 'fg-star')
     );
 
@@ -203,7 +203,7 @@ const GalaxyBackground = () => {
         else if (starClass === 'mid-star') brightness *= 0.5;
         else brightness *= 0.3; // Background random stars are still dim
 
-        const size = starClass === 'fg-star' 
+        const size = starClass === 'fg-star'
           ? Math.random() * 0.8 + 0.2
           : Math.random() * 0.5 + 0.1;
 
@@ -252,17 +252,17 @@ const GalaxyBackground = () => {
     const createMovingObject = (): MovingObject => {
       const angle = Math.random() * 360;
       const distance = Math.random() * 80 + 40;
-      
+
       // Start from left edge
       const startX = -15;
       const startY = Math.random() * 120 - 10;
       const endX = startX + distance * Math.cos(angle * Math.PI / 180);
       const endY = startY + distance * Math.sin(angle * Math.PI / 180);
-      
+
       const deltaX = endX - startX;
       const deltaY = endY - startY;
       const movementAngle = Math.atan2(deltaY, deltaX) * 180 / Math.PI;
-      
+
       return {
         id: Date.now(),
         startX,
@@ -281,7 +281,7 @@ const GalaxyBackground = () => {
     const addMovingObject = () => {
       const newObject = createMovingObject();
       setMovingObject(newObject);
-      
+
       setTimeout(() => {
         setMovingObject(null);
         // Create new object after a delay
@@ -300,32 +300,32 @@ const GalaxyBackground = () => {
   }, [isClient]);
 
   // Lightning effect
- useEffect(() => {
-  if (!isClient) return;
+  useEffect(() => {
+    if (!isClient) return;
 
-  const triggerLightning = () => {
-    // You can still use randomness if you want to skip some 5s intervals
-    if (Math.random() < 0.8) { // Optional: 80% chance to strike
-      const newStrike: LightningStrike = {
-        id: Date.now(),
-        x: Math.random() * 100,
-        y: Math.random() * 100,
-        size: Math.random() * 8 + 5,
-        intensity: Math.random() * 0.2 + 0.1
-      };
+    const triggerLightning = () => {
+      // You can still use randomness if you want to skip some 5s intervals
+      if (Math.random() < 0.8) { // Optional: 80% chance to strike
+        const newStrike: LightningStrike = {
+          id: Date.now(),
+          x: Math.random() * 100,
+          y: Math.random() * 100,
+          size: Math.random() * 8 + 5,
+          intensity: Math.random() * 0.2 + 0.1
+        };
 
-      setLightningStrikes(prev => [...prev, newStrike]);
+        setLightningStrikes(prev => [...prev, newStrike]);
 
-      setTimeout(() => {
-        setLightningStrikes(prev => prev.filter(strike => strike.id !== newStrike.id));
-      }, 150 + Math.random() * 200);
-    }
-  };
+        setTimeout(() => {
+          setLightningStrikes(prev => prev.filter(strike => strike.id !== newStrike.id));
+        }, 150 + Math.random() * 200);
+      }
+    };
 
-  const interval = setInterval(triggerLightning, 10000); // One try every 5s
+    const interval = setInterval(triggerLightning, 10000); // One try every 5s
 
-  return () => clearInterval(interval);
-}, [isClient]);
+    return () => clearInterval(interval);
+  }, [isClient]);
 
   // Render stars
   const renderStars = (starsArray: Star[]) => {
@@ -355,16 +355,16 @@ const GalaxyBackground = () => {
     <div className="milky-way-container">
       {/* Deep space base */}
       <div className="deep-space-base" />
-      
+
       {/* Star field layers */}
       <div className="star-field background-stars">
         {renderStars(starsData.backgroundStars)}
       </div>
-      
+
       <div className="star-field mid-stars">
         {renderStars(starsData.midStars)}
       </div>
-      
+
       {/* Cosmic dust clouds */}
       <div className="cosmic-dust-field">
         {cosmicDustData.map(dust => (
@@ -382,8 +382,8 @@ const GalaxyBackground = () => {
           />
         ))}
       </div>
-      
-       {/* Single moving object with tail */}
+
+      {/* Single moving object with tail */}
       <div className="moving-objects-container">
         {movingObject && (
           <div
@@ -407,7 +407,7 @@ const GalaxyBackground = () => {
           </div>
         )}
       </div>
-      
+
       {/* Lightning strikes */}
       {lightningStrikes.map(strike => (
         <div
@@ -422,14 +422,14 @@ const GalaxyBackground = () => {
           }}
         />
       ))}
-      
+
       {/* Galactic center */}
       <div className="galactic-center" />
-      
+
       <div className="star-field foreground-stars">
         {renderStars(starsData.foregroundStars)}
       </div>
-      
+
       {/* Galactic dust band */}
       <div className="galactic-dust-band" />
     </div>

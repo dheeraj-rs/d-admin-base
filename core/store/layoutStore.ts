@@ -20,7 +20,7 @@ const DEFAULT_LAYOUT_CONFIG: LayoutConfig = {
 const DEFAULT_LAYOUT_STATE: LayoutState = {
   staticMenuDesktopInactive: false,
   staticConfigDesktopInactive: true,
-  staticBottombarDesktopInactive: true,
+  staticBottombarDesktopInactive: false,
   overlayMenuActive: false,
   overlayConfigActive: false,
   overlayBottombarActive: false,

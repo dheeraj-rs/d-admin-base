@@ -106,6 +106,7 @@ export interface LayoutSlotProps {
   slot: LayoutSlot;
   components?: BarComponent[];
   fallback?: ReactNode;
+  menubarRef?: React.RefObject<HTMLDivElement | null>;
 }
 
 /**
