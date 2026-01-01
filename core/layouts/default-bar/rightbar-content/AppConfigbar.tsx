@@ -4,7 +4,7 @@ import { ThemeManager } from '@/core/utils/theme/ThemeManager';
 import { useEffect, useState } from 'react';
 import { LayoutConfig } from '../../../store';
 import { useLayoutStore } from '../../../store';
-import { useLanguage } from '@/core/providers/LanguageProvider';
+import { useLanguage, AVAILABLE_LANGUAGES } from '@/core/providers/LanguageProvider';
 import ScaleControl from './ScaleControl';
 import MenuTypeSelector from './MenuTypeSelector';
 import TabConfig from './TabConfig';
@@ -18,6 +18,8 @@ const AppConfigbar = () => {
     const layoutConfig = useLayoutStore((state) => state.layoutConfig);
     const setLayoutConfig = useLayoutStore((state) => state.setLayoutConfig);
     const layoutState = useLayoutStore((state) => state.layoutState);
+    const language = useLayoutStore((state) => state.language);
+    const setLanguage = useLayoutStore((state) => state.setLanguage);
     const onSidebarAutoOverlayToggle = useLayoutStore((state) => state.onSidebarAutoOverlayToggle);
     const onMenuToggle = useLayoutStore((state) => state.onMenuToggle);
     const onConfigToggle = useLayoutStore((state) => state.onConfigToggle);
@@ -85,16 +87,29 @@ const AppConfigbar = () => {
                 t={t}
             />
 
-            <h5 className="config-title">{t('config.rippleEffect')}</h5>
-            <div className="ripple-toggle">
-                <button
-                    className={`toggle-button ${layoutConfig.ripple ? 'active' : ''}`}
-                    onClick={() => changeRipple({ value: !layoutConfig.ripple })}
-                    title={`Toggle ${t('config.rippleEffect')}`}
-                >
-                    <i className="pi pi-circle-fill ripple-icon" />
-                    <span>{t('config.ripple')}</span>
-                </button>
+            <h5 className="config-title">{t('config.rippleEffect')} <span className=''>{t('config.language')}</span></h5>
+            <div className="ripple-language-row">
+                <div className="ripple-toggle">
+                    <button
+                        className={`toggle-button ${layoutConfig.ripple ? 'active' : ''}`}
+                        onClick={() => changeRipple({ value: !layoutConfig.ripple })}
+                        title={`Toggle ${t('config.rippleEffect')}`}
+                    >
+                        <i className="pi pi-circle-fill ripple-icon" />
+                        <span>{t('config.ripple')}</span>
+                    </button>
+                    <select
+                        className="language-dropdown"
+                        value={language}
+                        onChange={(e) => setLanguage(e.target.value as 'en' | 'hi')}
+                    >
+                        {AVAILABLE_LANGUAGES.map((lang) => (
+                            <option key={lang.code} value={lang.code}>
+                                {lang.flag} {lang.nativeName}
+                            </option>
+                        ))}
+                    </select>
+                </div>
             </div>
 
             <div className="theme-container">
@@ -265,7 +280,7 @@ const AppConfigbar = () => {
                     ]}
                 />
             </div>
-        </div>
+        </div >
     );
 };
 
