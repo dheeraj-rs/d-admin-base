@@ -95,7 +95,7 @@
       font-size: 1.1rem;
       font-weight: 400;
       color: var(--text-color);
-      margin: 1.5rem 0 0;
+      margin: 1.5rem 0 0.5rem;
       span {
         padding-left: 3rem;
       }
@@ -350,19 +350,15 @@
         text-align: center;
       }
       .theme-category {
-        margin-bottom: 1.5rem;
         h6 {
           font-size: 0.875rem;
           font-weight: 400;
-          margin-bottom: 0.75rem;
           color: var(--text-color);
         }
         .theme-grid {
           display: grid;
           grid-template-columns: repeat(auto-fill, minmax(50px, 1fr));
           gap: 0.5rem;
-          padding: 0.5rem;
-
           .theme-selector__grid-item {
             position: relative;
             cursor: pointer;
