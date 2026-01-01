@@ -3,19 +3,19 @@ import WebsiteBuilderTopbar from './website-builder/components/WebsiteBuilderTop
 import WebsiteBuilderLeftbar from './website-builder/components/WebsiteBuilderLeftbar'
 import WebsiteBuilderRightbar from './website-builder/components/WebsiteBuilderRightbar'
 import WebsiteBuilderBottombar from './website-builder/components/WebsiteBuilderBottombar'
-import IsolatedLayout from '@/core/layouts/IsolatedLayout'
+import Layout from '@/core/layouts/Layout'
 
-function layout({ children }: { children: React.ReactNode }) {
+function MainLayout({ children }: { children: React.ReactNode }) {
     return (
-        <IsolatedLayout
+        <Layout
             topbarContent={<WebsiteBuilderTopbar />}
             leftbarContent={<WebsiteBuilderLeftbar />}
             rightbarContent={<WebsiteBuilderRightbar />}
             bottombarContent={<WebsiteBuilderBottombar />}
         >
             {children}
-        </IsolatedLayout>
+        </Layout>
     )
 }
 
-export default layout
+export default MainLayout

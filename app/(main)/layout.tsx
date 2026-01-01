@@ -1,14 +1,14 @@
 import React from 'react';
 import IsolatedContainer from '@/core/layouts/default-bar/IsolatedContainer';
-import IsolatedLayout from '@/core/layouts/IsolatedLayout';
+import Layout from '@/core/layouts/Layout';
 
 function MainLayout({ children }: { children: React.ReactNode }) {
     return (
-        <IsolatedLayout>
+        <Layout>
             <IsolatedContainer>
                 {children}
             </IsolatedContainer>
-        </IsolatedLayout>
+        </Layout>
     );
 }
 

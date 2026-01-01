@@ -17,7 +17,7 @@ import BottombarContent from './default-bar/bottombar-content/BottombarContent';
 
 interface LayoutProps extends ChildContainerProps, LayoutContentProps { }
 
-const IsolatedLayout = ({
+const Layout = ({
     children,
     topbarContent,
     leftbarContent,
@@ -67,4 +67,4 @@ const IsolatedLayout = ({
     );
 };
 
-export default IsolatedLayout;
+export default Layout;
