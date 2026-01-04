@@ -1,5 +1,5 @@
-import { useLanguage } from '@/core/providers/LanguageProvider';
-import { AppMenuItem } from '@/core/types/admin-layout';
+import { useLanguage } from '../providers/LanguageProvider';
+import { AppMenuItem } from '../types/admin-layout';
 
 const translateMenuItem = (
   item: AppMenuItem,
@@ -11,7 +11,10 @@ const translateMenuItem = (
     const translationKey = `menu.${item.label
       .toLowerCase()
       .replace(/\s+/g, '.')}`;
-    translatedItem.label = t(translationKey) || item.label;
+    const translated = t(translationKey);
+    // If translation returns the key itself, use the original label
+    translatedItem.label =
+      translated && translated !== translationKey ? translated : item.label;
   }
 
   if (item.description) {

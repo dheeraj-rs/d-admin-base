@@ -22,26 +22,70 @@
   animation: ripple 0.4s linear;
 }
 
-// Enter transition
-.layout-submenu-enter {
-  max-height: 1000px !important;
-  transition: max-height 1s ease-in-out;
-}
-
-.layout-submenu-enter-active {
-  max-height: 1000px !important;
-  transition: max-height 1s ease-in-out;
-}
-
-// Exit transition
-.layout-submenu-exit {
-  max-height: 1000px !important;
-}
-
-.layout-submenu-exit-active {
+// Submenu transitions - world-class professional polish
+.layout-menu .layout-submenu {
   overflow: hidden;
+  // Use Material Design's standard easing for natural motion
+  transition: max-height 0.45s cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-origin: top center;
+  // Hardware acceleration for smooth 60fps animations
+  will-change: max-height, opacity, transform;
+  backface-visibility: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+.layout-menu .submenu-open {
+  max-height: 2000px !important;
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  // Stagger opacity slightly for elegant reveal
+  transition-delay: 0s, 0.08s, 0s;
+
+  // Staggered animation for child items
+  > li {
+    animation: slideInDown 0.35s cubic-bezier(0.4, 0, 0.2, 1) backwards;
+
+    @for $i from 1 through 10 {
+      &:nth-child(#{$i}) {
+        animation-delay: #{$i * 0.04}s;
+      }
+    }
+  }
+}
+
+.layout-menu .submenu-closed {
   max-height: 0 !important;
-  transition: max-height 0.45s cubic-bezier(0, 1, 0, 1);
+  opacity: 0;
+  transform: translateY(-10px) scale(0.98);
+  // Faster closing for snappy feel
+  transition-duration: 0.32s, 0.25s, 0.32s;
+  pointer-events: none;
+}
+
+// Keyframe for elegant slide-in effect
+@keyframes slideInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Respect user's motion preferences
+@media (prefers-reduced-motion: reduce) {
+  .layout-menu .layout-submenu {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+
+  .layout-menu .submenu-open > li {
+    animation: none !important;
+  }
 }
 
 .clear-icon {

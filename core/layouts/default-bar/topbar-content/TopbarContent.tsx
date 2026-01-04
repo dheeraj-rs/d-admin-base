@@ -44,18 +44,18 @@ const TopbarContent = forwardRef<AppTopbarRef>(() => {
                 <AppTopbarMenu />
             </div>
             <div className="topbar-actions">
+                <button ref={configMenuButtonRef} type="button" className="p-link layout-topbar-button layout-topbar-menu-button" onClick={(e) => { e.stopPropagation(); onConfigToggle(); }}>
+                    <i className="pi pi-palette" />
+                </button>
+                <button ref={sidebarMenuButtonRef} type="button" className="p-link layout-topbar-button layout-topbar-menu-button" onClick={(e) => { e.stopPropagation(); onMenuToggle(); }}>
+                    <i className="pi pi-bars" />
+                </button>
                 <Link href="/settings">
                     <button type="button" className="p-link layout-topbar-button">
                         <i className="pi pi-cog"></i>
                     </button>
                 </Link>
             </div>
-            <button ref={configMenuButtonRef} type="button" className="p-link layout-topbar-button layout-topbar-menu-button" onClick={(e) => { e.stopPropagation(); onConfigToggle(); }}>
-                <i className="pi pi-palette" />
-            </button>
-            <button ref={sidebarMenuButtonRef} type="button" className="p-link layout-topbar-button layout-topbar-menu-button" onClick={(e) => { e.stopPropagation(); onMenuToggle(); }}>
-                <i className="pi pi-bars" />
-            </button>
         </section>
     );
 });

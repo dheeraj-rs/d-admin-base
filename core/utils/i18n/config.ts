@@ -1,7 +1,9 @@
 import { Language } from '@/core/types/i18n';
+import { menuTranslations } from './menu';
 
 export const configTranslations: Record<Language, Record<string, string>> = {
   en: {
+    ...menuTranslations.en,
     'config.scale': 'Scale',
     'config.menuType': 'Menu Type',
     'config.menuMode': 'Menu Mode',
@@ -55,6 +57,7 @@ export const configTranslations: Record<Language, Record<string, string>> = {
     'config.dAdminDark': 'D-Admin',
   },
   hi: {
+    ...menuTranslations.hi,
     'config.scale': 'स्केल',
     'config.menuType': 'मेनू टाइप',
     'config.menuMode': 'मेनू मोड',

@@ -1,20 +1,29 @@
-import React from 'react';
-import AppMenubar from './AppMenubar';
+import React, { RefObject, useRef } from 'react';
+import AppMenuitem from './AppMenuitem';
+import AppMenuSearch from './AppMenuSearch';
+import { useLayoutStore } from '@/core/store';
+import { useTranslatedMenuItems } from '@/core/hooks/useTranslatedMenuItems';
+import { AppMenuItem } from '@/core/types/admin-layout';
+import { MENU_ITEMS } from '../../constants/menu-data';
 
-interface LeftbarContentProps {
-    menubarRef: React.RefObject<HTMLDivElement | null>;
-}
+const LeftbarContent = ({ menubarRef }: { menubarRef: React.RefObject<HTMLDivElement | null> }) => {
+    const searchRef = useRef<HTMLDivElement>(null);
+    const layoutState = useLayoutStore((state) => state.layoutState);
+    const filteredMenuItems = useTranslatedMenuItems(MENU_ITEMS);
+    const originalItems: AppMenuItem[] = layoutState?.searchSidebarItems?.length
+        ? layoutState.searchSidebarItems
+        : filteredMenuItems.length > 0
+            ? filteredMenuItems
+            : MENU_ITEMS;
+    const items = useTranslatedMenuItems(originalItems);
 
-const LeftbarContent = ({ menubarRef }: LeftbarContentProps) => {
     return (
-        <div className="layout-sidebar" ref={menubarRef}>
-            <div className="sidebar-header">
-                {/* Header content could be here, but AppMenubar usually handles the menu list */}
-            </div>
-            <div className="layout-menu-container">
-                <AppMenubar menubarRef={menubarRef} />
-            </div>
-        </div>
+        <ul className="layout-menu">
+            {items.map((item, i) => {
+                return !item?.separator ? <AppMenuitem item={item} root={true} index={i} key={item.label} /> : <li className="menu-separator"></li>;
+            })}
+            <AppMenuSearch searchRef={searchRef as unknown as RefObject<HTMLDivElement>} menubarRef={menubarRef as unknown as RefObject<HTMLDivElement>} />
+        </ul>
     );
 };
 

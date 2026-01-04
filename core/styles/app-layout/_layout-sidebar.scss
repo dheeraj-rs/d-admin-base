@@ -41,7 +41,9 @@
     li.active-menuitem {
       > a {
         .layout-submenu-toggler {
+          // Smooth 180-degree rotation with spring-like easing
           transform: rotate(-180deg);
+          transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
       }
 
@@ -76,7 +78,8 @@
         .layout-submenu-toggler {
           font-size: 75%;
           margin-left: auto;
-          transition: transform $duration-transition-base;
+          // Professional smooth rotation with cubic-bezier
+          transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         &.rotated-icon {
@@ -101,6 +104,10 @@
 
         &:focus {
           @include focused-inset();
+        }
+        &:active {
+          transform: scale(0.98);
+          transition-duration: 0.1s;
         }
       }
 

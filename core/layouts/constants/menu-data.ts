@@ -4,22 +4,17 @@ export const MENU_ITEMS = [
     items: [{ label: 'Dashboard', icon: 'pi pi-fw pi-home', to: '/' }],
   },
   {
-    label: 'Apps',
+    label: 'Builder',
     items: [
       {
-        label: 'Mail',
+        label: 'Website Builder AI',
         icon: 'pi pi-fw pi-envelope',
-        to: '/owner-dashboard/mail',
+        to: '/website-builder-ai',
       },
       {
-        label: 'Calendar',
+        label: 'Website Builder Snippet',
         icon: 'pi pi-fw pi-calendar',
-        to: '/owner-dashboard/calendar',
-      },
-      {
-        label: 'Files',
-        icon: 'pi pi-fw pi-file',
-        to: '/owner-dashboard/files',
+        to: '/website-builder-snippet',
       },
     ],
   },
@@ -34,11 +29,23 @@ export const MENU_ITEMS = [
             label: 'Buttons',
             to: '/owner-dashboard/uikit/button',
             items: [
-              { label: 'Buttons2', to: '/owner-dashboard/uikit/button' },
-              { label: 'Forms2', to: '/owner-dashboard/uikit/form' },
+              {
+                label: 'Buttons2',
+                icon: 'pi pi-fw pi-chart-bar',
+                to: '/owner-dashboard/uikit/button',
+              },
+              {
+                label: 'Forms2',
+                icon: 'pi pi-fw pi-chart-bar',
+                to: '/owner-dashboard/uikit/form',
+              },
             ],
           },
-          { label: 'Forms', to: '/owner-dashboard/uikit/form' },
+          {
+            label: 'Forms',
+            icon: 'pi pi-fw pi-chart-bar',
+            to: '/owner-dashboard/uikit/form',
+          },
         ],
       },
     ],

@@ -731,6 +731,12 @@
       display: flex !important;
       align-items: center !important;
       justify-content: center !important;
+      // Fix for mobile squishing
+      flex-shrink: 0 !important;
+      width: 3rem !important;
+      height: 3rem !important;
+      border-radius: 50% !important;
+      padding: 0.5rem !important;
 
       &.layout-topbar-user-button {
         order: 3;
@@ -738,6 +744,10 @@
 
       &:not(.layout-topbar-user-button) {
         order: 4;
+      }
+
+      &:hover {
+        background-color: var(--surface-hover) !important;
       }
     }
   }
@@ -819,8 +829,24 @@
         }
 
         .layout-topbar-menu-button {
+          // Fix button dimensions to match others
+          width: 3rem !important;
+          height: 3rem !important;
+          padding: 0.5rem !important;
+          border-radius: 50% !important;
+          display: flex !important;
+          align-items: center !important;
+          justify-content: center !important;
+          background: transparent !important;
+          border: none !important;
+
           i {
             font-size: 1.25rem !important;
+            line-height: 1 !important;
+          }
+
+          &:hover {
+            background-color: var(--surface-hover) !important;
           }
         }
       }
