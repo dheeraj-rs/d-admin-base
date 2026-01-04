@@ -668,15 +668,6 @@
         position: static;
       }
 
-      .topbar-notification-btn {
-        background-color: var(--surface-card);
-        padding: 0.5rem;
-
-        .notification-text {
-          display: none;
-        }
-      }
-
       .notification-modal {
         position: fixed;
         top: calc($height-topbar-base + $padding-layout-base * 2);
@@ -737,8 +728,9 @@
     }
 
     .layout-topbar-menu-button {
-      display: inline-flex !important;
-      padding: 0.5rem 1rem;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
 
       &.layout-topbar-user-button {
         order: 3;
@@ -817,24 +809,6 @@
           display: flex !important;
           align-items: center !important;
           justify-content: flex-end !important;
-
-          .topbar-notification-btn {
-            padding: 0.55rem !important;
-            gap: 0.35rem !important;
-            box-shadow: none !important;
-            display: flex !important;
-            align-items: center !important;
-
-            i {
-              font-size: 1.25rem !important;
-            }
-
-            .notification-badge {
-              font-size: 0.7rem !important;
-              padding: 0.2rem 0.35rem !important;
-              min-width: 18px !important;
-            }
-          }
         }
 
         .topbar-end {
@@ -845,12 +819,6 @@
         }
 
         .layout-topbar-menu-button {
-          padding: 0.55rem 0.7rem !important;
-          margin-left: 0.35rem !important;
-          display: flex !important;
-          align-items: center !important;
-          justify-content: center !important;
-
           i {
             font-size: 1.25rem !important;
           }
@@ -891,23 +859,6 @@
 
         .topbar-center {
           padding-right: 0.3rem !important;
-
-          .topbar-notification-btn {
-            padding: 0.4rem !important;
-
-            i {
-              font-size: 1.05rem !important;
-            }
-          }
-        }
-
-        .layout-topbar-menu-button {
-          padding: 0.4rem 0.5rem !important;
-          margin-left: 0.25rem !important;
-
-          i {
-            font-size: 1.05rem !important;
-          }
         }
       }
     }

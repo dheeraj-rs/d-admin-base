@@ -30,7 +30,7 @@ const AppTopbarNotifications: React.FC = () => {
     return (
         <div className="topbar-notification-wrapper" ref={wrapperRef}>
             <button
-                className="p-link layout-topbar-button topbar-notification-btn"
+                className="p-link layout-topbar-button"
                 title="Notifications"
                 onClick={toggleNotifications}
             >
